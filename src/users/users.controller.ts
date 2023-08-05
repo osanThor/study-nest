@@ -9,6 +9,7 @@ import {
   Res,
   HttpCode,
   BadRequestException,
+  Redirect,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -29,6 +30,9 @@ export class UsersController {
     return res.status(200).send(users);
   }
 
+  // Header를 추가하고 싶을 때
+  // @Header('Custom', 'Test Header')
+  @Redirect('https://nestjs.com', 301)
   @Get(':id')
   findOne(@Param('id') id: string) {
     if (+id < 1) {
